@@ -4,9 +4,9 @@
 import time
 
 # 처음 인사
-name = input('What is your name?')
+name = input('What is your name? ')
 
-print('Hi, ' + name + 'Have fun playing the Hangman game!')
+print('Hi, ' + name + '. Have fun playing the Hangman game!')
 
 print()
 
@@ -26,40 +26,41 @@ guesses = ''
 turns = 10
 
 # 찬스 카운트가 남아있을 경우
+print('It\'s time to guess the words.')
+print()
+
 while turns > 0:
     # 실패 횟수
     failed = 0
-
     for char in word:
         if char in guesses:
             print(char, end='')
         else:
-            print('_', end='')
+            print('_', end=' ')
             failed += 1
-        if failed == 0:
-            print()
-            print()
-            print('Congratulations! The guesses are correct.')
-            break
+    if failed == 0:
         print()
-
-        # 추측 단어 문자 단위 입력
         print()
-        guess = input('Guess a character.')
+        print('Congratulations! The guesses are correct.')
+        break
+    print()
 
-        guess += guess
+    # 추측 단어 문자 단위 입력
+    print()
+    guess = input('Please enter a letter : ')
 
-        # 정답 단어에 추측한 문자가 포함되어 있지 않는 경우 
-        if guess not in word:      
-            turns -= 1
-            # 오류 메시지
-            print('Oops! wrong') 
-            # 남은 기회 출력
-            print('You have', turns, 'more guesses!')
+    guesses += guess
 
-            if turns == 0:
-                # 실패 메시지
-                print('You failed. End the game. Bye!')
+    # 정답 단어에 추측한 문자가 포함되어 있지 않는 경우 
+    if guess not in word:      
+        turns -= 1
+        # 오류 메시지
+        print('Oops! wrong') 
+        # 남은 기회 출력
+        print('You have', turns, 'more guesses!')
 
+        if turns == 0:
+            # 실패 메시지
+            print('You failed. End the game. Bye!')
 
 
