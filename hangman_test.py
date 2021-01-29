@@ -2,6 +2,7 @@
 # 기본 프로그램 제작 및 테스트
 
 import time
+import random
 
 # 처음 인사
 name = input('What is your name? ')
@@ -17,7 +18,8 @@ print()
 time.sleep(0.5)
 
 # 정답 단어
-word = 'secret'
+word = ['developer','secret','ant', 'balloon', 'book', 'cube', 'pencil', 'cup', 'coffee', 'tomorrow', 'yesterday', 'Cheetah', 'tiger', 'monster',
+'rabbit', 'December', 'music', 'guitar', 'keyboard', 'wonderwoman', 'devil', 'princess', 'kitty', 'glass', 'perfume', 'poison']  
 
 # 추측 단어
 guesses = ''
@@ -25,12 +27,66 @@ guesses = ''
 # 기회
 turns = 10
 
+# 그림 
+HANGMAN_PICS = ['''
+   
+       
+       
+       
+      ===''',
+      '''
+    
+       |
+       |
+       |
+      ===''','''
+      --+
+       |
+       |
+       |
+      ===''','''
+    +---+
+       |
+       |
+       |
+      ===''', '''
+    +---+
+   O   |
+       |
+       |
+      ===''', '''
+    +---+
+    O   |
+    |   |
+        |
+       ===''', '''
+    +---+
+    O   |
+   /|   |
+        |
+       ===''', '''
+    +---+
+    O   |
+   /|\  |
+        |
+       ===''', '''
+    +---+
+    O   |
+   /|\  |
+   /    |
+       ===''', '''
+    +---+
+    O   |
+   /|\  |
+   / \  |
+       ===''']
+
 # 찬스 카운트가 남아있을 경우
-print('It\'s time to guess the words.')
+print('Let\'s guess the words.')
 print()
 
 while turns > 0:
-    # 실패 횟수
+    # 실패 횟수(문자 매치 수)
     failed = 0
     for char in word:
         if char in guesses:
@@ -58,7 +114,10 @@ while turns > 0:
         print('Oops! wrong') 
         # 남은 기회 출력
         print('You have', turns, 'more guesses!')
-
+        if turns == 9:
+            print(HANGMAN_PICS[0])
+        elif turns == 8:
+            print(HANGMAN_PICS[1])
         if turns == 0:
             # 실패 메시지
             print('You failed. End the game. Bye!')
