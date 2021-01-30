@@ -18,11 +18,13 @@ print()
 time.sleep(0.5)
 
 # 정답 단어
-word = ['developer','secret','ant', 'balloon', 'book', 'cube', 'pencil', 'cup', 'coffee', 'tomorrow', 'yesterday', 'Cheetah', 'tiger', 'monster',
-'rabbit', 'December', 'music', 'guitar', 'keyboard', 'wonderwoman', 'devil', 'princess', 'kitty', 'glass', 'perfume', 'poison']  
+def random_words():
+    words = ['developer','secret','ant', 'balloon', 'book', 'cube', 'pencil', 'cup', 'coffee', 'tomorrow', 'yesterday', 'Cheetah', 'tiger', 'monster',
+             'rabbit', 'December', 'music', 'guitar', 'keyboard', 'wonderwoman', 'devil', 'princess', 'kitty', 'glass', 'perfume', 'poison']  
+    return random.choice(words)
 
 # 추측 단어
-guesses = ''
+guesses = []
 
 # 기회
 turns = 10
@@ -49,32 +51,32 @@ HANGMAN_PICS = ['''
        |
        |
        |
-      ===''', '''
+      ===''','''
     +---+
    O   |
        |
        |
-      ===''', '''
+      ===''','''
     +---+
     O   |
     |   |
         |
-       ===''', '''
+       ===''','''
     +---+
     O   |
    /|   |
         |
-       ===''', '''
+       ===''','''
     +---+
     O   |
    /|\  |
         |
-       ===''', '''
+       ===''','''
     +---+
     O   |
    /|\  |
    /    |
-       ===''', '''
+       ===''','''
     +---+
     O   |
    /|\  |
@@ -88,7 +90,7 @@ print()
 while turns > 0:
     # 실패 횟수(문자 매치 수)
     failed = 0
-    for char in word:
+    for char in random_words():
         if char in guesses:
             print(char, end='')
         else:
@@ -105,12 +107,17 @@ while turns > 0:
     print()
     guess = input('Please enter a letter : ')
 
-    guesses += guess
+    guesses += guess  
+     # 같은 문자를 두번 입력했을 경우 
+    if guess in guesses:
+        print('The character has already been entered. Please enter another letter.')
+          
 
     # 정답 단어에 추측한 문자가 포함되어 있지 않는 경우 
-    if guess not in word:      
+    if guess not in random_words():      
         turns -= 1
         # 오류 메시지
+        print()
         print('Oops! wrong') 
         # 남은 기회 출력
         print('You have', turns, 'more guesses!')
@@ -118,8 +125,23 @@ while turns > 0:
             print(HANGMAN_PICS[0])
         elif turns == 8:
             print(HANGMAN_PICS[1])
+        elif turns == 7:
+            print(HANGMAN_PICS[2])
+        elif turns == 6:
+            print(HANGMAN_PICS[3])
+        elif turns == 5:
+            print(HANGMAN_PICS[4])
+        elif turns == 4:
+            print(HANGMAN_PICS[5])
+        elif turns == 3:
+            print(HANGMAN_PICS[6])
+        elif turns == 2:
+            print(HANGMAN_PICS[7])
+        elif turns == 1:
+            print(HANGMAN_PICS[8])             
         if turns == 0:
             # 실패 메시지
+            print(HANGMAN_PICS[9])
             print('You failed. End the game. Bye!')
 
 
