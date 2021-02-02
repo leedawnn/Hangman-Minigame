@@ -18,10 +18,10 @@ print()
 time.sleep(0.5)
 
 # 정답 단어
-def random_words():
-    words = ['developer','secret','ant', 'balloon', 'book', 'cube', 'pencil', 'cup', 'coffee', 'tomorrow', 'yesterday', 'Cheetah', 'tiger', 'monster',
-             'rabbit', 'December', 'music', 'guitar', 'keyboard', 'wonderwoman', 'devil', 'princess', 'kitty', 'glass', 'perfume', 'poison']  
-    return random.choice(words)
+words = ['developer','secret','ant', 'balloon', 'book', 'cube', 'pencil', 'cup', 'coffee', 'tomorrow', 'yesterday', 'Cheetah', 'tiger', 'monster',
+         'rabbit', 'December', 'music', 'guitar', 'keyboard', 'wonderwoman', 'devil', 'princess', 'kitty', 'glass', 'perfume', 'poison']  
+w = random.choice(words) 
+
 
 # 추측 단어
 guesses = []
@@ -90,7 +90,7 @@ print()
 while turns > 0:
     # 실패 횟수(문자 매치 수)
     failed = 0
-    for char in random_words():
+    for char in w:
         if char in guesses:
             print(char, end='')
         else:
@@ -107,18 +107,18 @@ while turns > 0:
     print()
     guess = input('Please enter a letter : ')
 
-    guesses += guess  
-     # 같은 문자를 두번 입력했을 경우 
+    # 같은 문자를 두번 입력했을 경우 
+    print()
+    guesses += guess
     if guess in guesses:
         print('The character has already been entered. Please enter another letter.')
-          
-
+              
     # 정답 단어에 추측한 문자가 포함되어 있지 않는 경우 
-    if guess not in random_words():      
+    if guess not in w:      
         turns -= 1
         # 오류 메시지
         print()
-        print('Oops! wrong') 
+        print('Oops! wrong')
         # 남은 기회 출력
         print('You have', turns, 'more guesses!')
         if turns == 9:
