@@ -7,6 +7,7 @@ import random
 # 처음 인사
 name = input('What is your name? ')
 
+
 print('Hi, ' + name + '. Have fun playing the Hangman game!')
 
 print()
@@ -107,6 +108,11 @@ while turns > 0:
     print()
     guess = input('Please enter a letter : ')
 
+    # 문자 하나만 입력
+    if len(guess) != 1:
+        print('Please enter one English letter.')
+        break
+    
     # 같은 문자를 두번 입력했을 경우 
     print()
     if guess in guesses:
