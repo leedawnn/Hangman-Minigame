@@ -92,7 +92,7 @@ while turns > 0:
     failed = 0
     for char in w:
         if char in guesses:
-            print(char, end='')
+            print(char, end=' ')
         else:
             print('_', end=' ')
             failed += 1
@@ -109,12 +109,14 @@ while turns > 0:
 
     # 같은 문자를 두번 입력했을 경우 
     print()
-    guesses += guess
     if guess in guesses:
         print('The character has already been entered. Please enter another letter.')
+    else:
+        guesses += guess
+
               
     # 정답 단어에 추측한 문자가 포함되어 있지 않는 경우 
-    if guess not in w:      
+    if guess not in w:
         turns -= 1
         # 오류 메시지
         print()
