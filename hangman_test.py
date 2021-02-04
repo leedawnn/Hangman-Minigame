@@ -1,12 +1,12 @@
 # Hangman(행맨) 미니 게임 제작
-# 기본 프로그램 제작 및 테스트
 
 import time
 import random
+import csv
+# import winsound
 
 # 처음 인사
 name = input('What is your name? ')
-
 
 print('Hi, ' + name + '. Have fun playing the Hangman game!')
 
@@ -18,11 +18,21 @@ print('Start Loading...')
 print()
 time.sleep(0.5)
 
-# 정답 단어
-words = ['developer','secret','ant', 'balloon', 'book', 'cube', 'pencil', 'cup', 'coffee', 'tomorrow', 'yesterday', 'Cheetah', 'tiger', 'monster',
-         'rabbit', 'December', 'music', 'guitar', 'keyboard', 'wonderwoman', 'devil', 'princess', 'kitty', 'glass', 'perfume', 'poison']  
-w = random.choice(words) 
+# 랜덤 단어 
+words = []
 
+# 랜덤단어 csv 파일 로드
+with open('/Users/leedawn/Documents/Hangman/Hangman-Minigame/word_list.csv', 'r') as f:
+    reader = csv.reader(f)
+    next(reader)
+    for c in reader:
+        words.append(c)
+
+random.shuffle(words)
+q = random.choice(words)
+
+# 정답 단어 
+w = q[0].strip()
 
 # 추측 단어
 guesses = []
@@ -36,28 +46,28 @@ HANGMAN_PICS = ['''
        
        
        
-      ===''',
+       ===''',
       '''
     
-       |
-       |
-       |
-      ===''','''
+        |
+        |
+        |
+       ===''','''
       --+
-       |
-       |
-       |
-      ===''','''
+        |
+        |
+        |
+       ===''','''
     +---+
-       |
-       |
-       |
-      ===''','''
+        |
+        |
+        |
+       ===''','''
     +---+
-   O   |
-       |
-       |
-      ===''','''
+    O   |
+        |
+        |
+       ===''','''
     +---+
     O   |
     |   |
@@ -102,27 +112,28 @@ while turns > 0:
         print()
         print('Congratulations! The guesses are correct.')
         break
-    print()
+    print() 
 
     # 추측 단어 문자 단위 입력
     print()
+    print('Hint: {}'.format(q[1].strip()))
+
     guess = input('Please enter a letter : ')
 
+    print()
     # 문자 하나만 입력
     if len(guess) != 1:
         print('Please enter one English letter.')
         break
-    
-    # 같은 문자를 두번 입력했을 경우 
-    print()
-    if guess in guesses:
-        print('The character has already been entered. Please enter another letter.')
-    else:
-        guesses += guess
 
-              
     # 정답 단어에 추측한 문자가 포함되어 있지 않는 경우 
+    # 같은 문자를 두번 입력했을 경우 
     if guess not in w:
+        if guess in guesses:
+            print()
+            print('The character has already been entered. Please enter another letter.')
+        else:
+            guesses += guess
         turns -= 1
         # 오류 메시지
         print()
