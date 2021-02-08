@@ -40,7 +40,7 @@ guesses = []
 # 기회
 turns = 10
 
-# 그림 
+# 그림
 HANGMAN_PICS = ['''
    
        
@@ -99,8 +99,9 @@ print('Let\'s guess the words.')
 print()
 
 while turns > 0:
-    # 실패 횟수(문자 매치 수)
+    # 문자 매치 수
     failed = 0
+
     for char in w:
         if char in guesses:
             print(char, end=' ')
@@ -126,41 +127,42 @@ while turns > 0:
         print('Please enter one English letter.')
         break
 
-    # 정답 단어에 추측한 문자가 포함되어 있지 않는 경우 
     # 같은 문자를 두번 입력했을 경우 
-    if guess not in w:
-        if guess in guesses:
-            print()
-            print('The character has already been entered. Please enter another letter.')
-        else:
-            guesses += guess
-        turns -= 1
-        # 오류 메시지
+    if guess in guesses:
         print()
-        print('Oops! wrong')
-        # 남은 기회 출력
-        print('You have', turns, 'more guesses!')
-        if turns == 9:
-            print(HANGMAN_PICS[0])
-        elif turns == 8:
-            print(HANGMAN_PICS[1])
-        elif turns == 7:
-            print(HANGMAN_PICS[2])
-        elif turns == 6:
-            print(HANGMAN_PICS[3])
-        elif turns == 5:
-            print(HANGMAN_PICS[4])
-        elif turns == 4:
-            print(HANGMAN_PICS[5])
-        elif turns == 3:
-            print(HANGMAN_PICS[6])
-        elif turns == 2:
-            print(HANGMAN_PICS[7])
-        elif turns == 1:
-            print(HANGMAN_PICS[8])             
-        if turns == 0:
-            # 실패 메시지
-            print(HANGMAN_PICS[9])
-            print('You failed. End the game. Bye!')
+        print('The character has already been entered. Please enter another letter.')
+    else:
+        guesses += guess
+
+        # 정답 단어에 추측한 문자가 포함되어 있지 않는 경우 
+        if guess not in w:
+            turns -= 1
+        # 오류 메시지
+            print()
+            print('Oops! wrong')
+            # 남은 기회 출력
+            print('You have', turns, 'more guesses!')
+            if turns == 9:
+                print(HANGMAN_PICS[0])
+            elif turns == 8:
+                print(HANGMAN_PICS[1])
+            elif turns == 7:
+                print(HANGMAN_PICS[2])
+            elif turns == 6:
+                print(HANGMAN_PICS[3])
+            elif turns == 5:
+                print(HANGMAN_PICS[4])
+            elif turns == 4:
+                print(HANGMAN_PICS[5])
+            elif turns == 3:
+                print(HANGMAN_PICS[6])
+            elif turns == 2:
+                print(HANGMAN_PICS[7])
+            elif turns == 1:
+                print(HANGMAN_PICS[8])             
+            if turns == 0:
+                # 실패 메시지
+                print(HANGMAN_PICS[9])
+                print('You failed. End the game. Bye!')
 
 
