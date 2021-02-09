@@ -3,7 +3,9 @@
 import time
 import random
 import csv
-# import winsound
+import pygame
+from playsound import playsound 
+
 
 # 처음 인사
 name = input('What is your name? ')
@@ -112,6 +114,7 @@ while turns > 0:
         print()
         print()
         print('Congratulations! The guesses are correct.')
+        playsound('./sound/good.wav')
         break
     print() 
 
@@ -164,5 +167,4 @@ while turns > 0:
                 # 실패 메시지
                 print(HANGMAN_PICS[9])
                 print('You failed. End the game. Bye!')
-
-
+                playsound('./sound/bad.wav')
