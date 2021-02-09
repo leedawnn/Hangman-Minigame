@@ -18,4 +18,4 @@ while turns > 0:
 
 총 기회 횟수는 10번이며, 기회가 깎일 때마다 '교수대-밧줄-머리-팔-손-몸통-다리-발' 순서로 그림이 출력된다.  기회가 모두 소진되면 게임오버가 되며, 실패 효과음이 나온다.
 반대로 10번의 기회 안에 단어 안에 있는 글자들을 모두 유추해내면 성공!
-<img src="https://github.com/leedawnn/gameover.png" width="450px" height="300px" alt="gameover"></img><br/>
+![gameover image](gameover.png)
